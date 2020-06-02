@@ -8,4 +8,5 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('ajax/', views.ajax, name='ajax'),
     path('greet/', views.GreetView.as_view(), name='greet'),
+    path('auto/', views.AutoDisplayView.as_view(), name='auto'),
 ]

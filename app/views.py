@@ -47,3 +47,19 @@ class GreetView(FormView):
         """jQuery に対してレスポンスを返すメソッド"""
         name = form.cleaned_data.get('name')
         return HttpResponse(f'こんにちは、{name}さん！')
+
+
+# 定期的にAjaxリクエストを自動ロードするサンプル
+# UUIDを生成して画面に表示していく
+class AutoDisplayView(TemplateView):
+    template_name = 'autodisplay.html'
+    
+    def post(self, request, *args, **kwargs):
+        if request.is_ajax():
+            """Ajax 処理を別メソッドに切り離す"""
+            print('### Ajax request')
+            return self.ajax_response()
+
+    def ajax_response(self):
+        """jQuery に対してレスポンスを返すメソッド"""
+        return HttpResponse(str(uuid4()))
